@@ -7,7 +7,12 @@ RUN apk --update add \
     ffmpeg \ 
     bash
 
-ADD . /app
+RUN adduser -D opensubs
+
+USER opensubs
+
+COPY --chown=opensubs:opensubs . /app
+
 WORKDIR /app
 
 ENV NODE_ENV=production
